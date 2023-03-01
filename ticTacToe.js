@@ -22,7 +22,7 @@ function getForwardButton() {
 
 function checkEquals(arr) {
     const cells = document.querySelectorAll(`#cell-${arr[0]},#cell-${arr[1]},#cell-${arr[2]}`);
-    if ([...cells].every(cell => cell.innerText == player)) {
+    if ([...cells].every(cell => cell.innerText === player)) {
         winner = player;
         cells.forEach(cell => { cell.style.color = 'red' });
         return true;
@@ -83,7 +83,7 @@ function restart() {
 }
 
 function switchPlayer() {
-    player = player == 'X' ? 'O' : 'X';
+    player = player === 'X' ? 'O' : 'X';
     getTitle().innerText = player;
 }
 
@@ -100,7 +100,7 @@ function onClickCell(i) {
     track += 1;
     editCell(i, player);
     history.push([player, i]);
-    if (checkIsEnded(i) || history.length == 9) {
+    if (checkIsEnded(i) || history.length === 9) {
         endGame();
         return;
     }
@@ -125,7 +125,7 @@ function onClickForward() {
     track += 1;
     editCell(history[track][1], history[track][0]);
 
-    if (track == history.length - 1) {
+    if (track === history.length - 1) {
         checkIsEnded(history[track][1]);
     }
     toggleBackForwardButton();
@@ -135,7 +135,7 @@ function onClickBack() {
     editCell(history[track][1], '');
     track -= 1;
 
-    if (track == history.length - 2) {
+    if (track === history.length - 2) {
         removeAllHightlight();
     }
     toggleBackForwardButton();
